@@ -42,7 +42,7 @@ func SetupRoutes(app *app.Application) *chi.Mux {
 func adminRoutes(router *chi.Mux, app *app.Application) {
 	// Public routes
 	router.Post("/admin/login", app.AdminHandler.HandleAdminLogin)
-	router.Post("/admin/create", app.AdminHandler.HandleCreateAdmin)
+	// router.Post("/admin/create", app.AdminHandler.HandleCreateAdmin)
 
 	// Protected routes
 	router.Route("/admin", func(r chi.Router) {
@@ -267,6 +267,7 @@ func fundRequestRoutes(router *chi.Mux, app *app.Application) {
 		r.Patch("/reject/{id}", app.FundRequestHandler.HandleRejectFundRequest)
 		r.Get("/requester/{id}", app.FundRequestHandler.HandleGetFundRequestsByRequesterID)
 		r.Get("/request-to/{id}", app.FundRequestHandler.HandleGetFundRequestsByRequestToID)
+		r.Get("/advance-credit-due/{id}" , app.FundRequestHandler.HandleGetAdvanceCreditDue)
 		r.Get("/all", app.FundRequestHandler.HandleGetAllFundRequests)
 	})
 }
